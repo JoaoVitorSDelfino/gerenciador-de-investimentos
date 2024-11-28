@@ -60,25 +60,32 @@ function AddInvestimento() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setGrafico(await getChart(dados, nome))
-    } catch (error) {
-      console.error('Erro ao gerar o gráfico:', error);
-    }
-
-    const novoInvestimento = {
-      nome,
-      descricao,
-      dados,
-      grafico
-    };
-
-    try {
+      // Aguarda o gráfico ser gerado e armazena a URL na variável
+      const imageUrl = await getChart(dados, nome);
+  
+      // Atualiza o estado do gráfico
+      setGrafico(imageUrl);
+  
+      console.log('Link do gráfico:', imageUrl);
+  
+      // Cria o objeto com o link do gráfico diretamente
+      const novoInvestimento = {
+        nome,
+        descricao,
+        dados,
+        grafico: imageUrl, // Usa a URL resolvida diretamente
+      };
+  
+      console.log('Novo investimento:', novoInvestimento);
+  
+      // Envia o investimento para o backend
       await axios.post("http://localhost:3001/investmentApi/investments/addInvestment", novoInvestimento);
+  
       navigate("/"); // Redireciona após sucesso
     } catch (error) {
       console.error("Erro ao adicionar investimento:", error);
     }
-  };
+  };  
 
   const redirect = () => {
     navigate("/");
