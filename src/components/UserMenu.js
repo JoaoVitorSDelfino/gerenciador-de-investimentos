@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
+import InvestmentList from "./InvestmentList"
 
 function UserMenu() {
     const navigate = useNavigate(); // Hook para navegação
@@ -23,6 +24,7 @@ function UserMenu() {
             </button>
           </li>
         </ul>
+        <InvestmentList />
       </div>
     );
 }
