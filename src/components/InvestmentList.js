@@ -11,7 +11,6 @@ function InvestmentList() {
     try {
       const response = await axios.get("http://localhost:3001/investmentApi/investments/showInvestments");
       setInvestimentos(response.data); // Armazena os investimentos no estado
-      console.log(investimentos)
     } catch (error) {
       console.error("Erro ao buscar investimentos:", error);
     }

@@ -4,12 +4,15 @@ import axios from "axios";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
+import getChart from "../chartApi/index";
+
 function AddInvestimento() {
   const [nome, setNome] = useState("");
   const [descricao, setDescricao] = useState("");
   const [dados, setDados] = useState({});
   const [selectedDate, setSelectedDate] = useState(null);
   const [valor, setValor] = useState("");
+  const [grafico, setGrafico] = useState("");
 
   const navigate = useNavigate();
 
@@ -56,10 +59,17 @@ function AddInvestimento() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      setGrafico(await getChart(dados, nome))
+    } catch (error) {
+      console.error('Erro ao gerar o gráfico:', error);
+    }
+
     const novoInvestimento = {
       nome,
       descricao,
       dados,
+      grafico
     };
 
     try {

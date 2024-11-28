@@ -20,6 +20,9 @@ const Investimento = db.define('investimento', {
         type: Sequelize.JSON,
         allowNull: false,
     },
+    grafico: {
+        type: Sequelize.STRING,
+    },
 })
 
 module.exports = Investimento

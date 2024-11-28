@@ -1,6 +1,5 @@
 // Função para gerar a configuração do gráfico
-function generateGraphConfig(investimento) {
-    const dados = investimento.dados;
+function generateGraphConfig(dados, nome) {
     const allDates = [];
     const allValues = [];
   
@@ -74,7 +73,7 @@ function generateGraphConfig(investimento) {
         labels: labels,
         datasets: [
           {
-            label: investimento.nome,
+            label: nome,
             backgroundColor: getRandomColor(),
             borderColor: getRandomColor(),
             data: data,
@@ -85,7 +84,7 @@ function generateGraphConfig(investimento) {
       options: {
         title: {
           display: true,
-          text: investimento.nome,
+          text: nome,
         },
       },
     };

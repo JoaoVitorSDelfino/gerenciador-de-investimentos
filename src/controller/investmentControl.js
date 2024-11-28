@@ -2,8 +2,6 @@ const Investment = require('../models/investimento')
 
 module.exports = {
     criar: async (dados) => {
-        console.log(dados)
-
         const novoInvestimento = await Investment.create(dados)
 
         return {status: true, mensagem: 'Sucesso ao criar Investment!', investment: novoInvestimento}

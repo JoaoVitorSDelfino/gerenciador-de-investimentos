@@ -23,7 +23,6 @@ function InvestmentDetails() {
 
       Object.keys(data[year]).forEach((month) => {
         const monthData = data[year][month][0];
-        console.log(data[year][month][0])
         organizedData[year][month] = {
           ValorFinal: monthData.ValorFinal,
           Dias: Object.entries(monthData.ValorDias).map(([day, value]) => ({
