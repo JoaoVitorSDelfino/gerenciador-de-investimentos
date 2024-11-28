@@ -1,4 +1,4 @@
-const Investment = require('../models/Investment')
+const Investment = require('../models/investimento')
 
 module.exports = {
     criar: async (dados) => {

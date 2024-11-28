@@ -17,7 +17,7 @@ const Investimento = db.define('investimento', {
         type: Sequelize.STRING,
     },
     dados: {
-        type: Sequelize.STRING,
+        type: Sequelize.JSON,
         allowNull: false,
     },
 })
