@@ -22,6 +22,22 @@ router.get('/getInvestment/:nome', async (req, res) => {
   }
 })
 
+router.get('/getInvestmentId/:id', async (req, res) => {
+    try {
+        const investimento = await Investment.buscarPorId(req.params.id)
+  
+        // Valida se o investimento foi encontrado
+        if (investimento.status) {
+            res.status(201).json({ investimento: investimento })
+        } else {
+            res.status(400).json({ investimento: investimento })
+        }
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ error: 'ERRO ao buscar o investimento' })
+    }
+  })
+
 // Listar lista de Investmentos cadastrados
 router.get('/showInvestments', async (req, res) => {
   try {

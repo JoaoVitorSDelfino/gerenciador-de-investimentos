@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import axios from "axios"
 
 // Componente para exibir um card com prévia do investimento
@@ -25,10 +26,16 @@ function InvestmentList() {
       <h2>Lista de Investimentos</h2>
       <div style={styles.cardContainer}>
         {investimentos.map((investimento) => (
-          <div key={investimento.id} style={styles.card}>
-            <h3 style={styles.cardTitle}>{investimento.nome}</h3>
-            <p style={styles.cardDescription}>{investimento.descricao}</p>
-          </div>
+          <Link
+            to={`/investments/${investimento.id}`}
+            key={investimento.id}
+            style={styles.cardLink}
+          >
+            <div style={styles.card}>
+              <h3 style={styles.cardTitle}>{investimento.nome}</h3>
+              <p style={styles.cardDescription}>{investimento.descricao}</p>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
