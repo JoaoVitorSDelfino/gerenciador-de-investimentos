@@ -19,6 +19,16 @@ module.exports = {
         }   
     },
 
+    buscarPorNome: async (nome) => {
+        const investimento = await Investment.findOne({where: {nome: nome}})
+
+        if (investimento) {
+            return {status: true, mensagem: 'Sucesso ao buscar investimento!', investimento: investimento}
+        } else {
+            return {status: false, mensagem: 'ERRO, investimento não existe!'}
+        }  
+    },
+
     alterar: async (id, novosDados) => {
         await Investment.update(
             novosDados, 
