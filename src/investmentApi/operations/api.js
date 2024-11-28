@@ -10,7 +10,6 @@ router.get('/investmentApi', async (req, res) => {
     }
 })
 
-router.use('/investmentApi/investments', require('./investments'))
-router.use('/investmentApi/users', require('./users'))
+router.use('/investmentApi/investments', require('./investment'))
 
 module.exports = router

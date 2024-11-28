@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
     res.send('teste')
 });
 
-app.use('/', require('./operations/investment'))
+app.use('/', require('./operations/api'))
 
 app.listen(port, function() {
     console.log('Server is running at port ' + port)
