@@ -51,7 +51,8 @@ function InvestmentDetails() {
     <div style={styles.container}>
       <h1>{investment.nome}</h1>
       <p>{investment.descricao}</p>
-      <img src={investment.grafico} alt='grafico' style={{width: "100%"}}/>
+      <img src={investment.graficoLinha} alt='graficoLinha' style={{width: "100%"}}/>
+      <img src={investment.graficoColuna} alt='graficoColuna' style={{width: "100%"}}/>
 
       {Object.entries(structuredData).map(([year, months]) => (
         <div key={year} style={styles.yearContainer}>

@@ -18,7 +18,6 @@ function generateGraphConfig(dados, nome) {
     const totalDays = allDates.length;
     let labels = [];
     let data = [];
-    let chartType = "line";
   
     // Definindo o tipo de gráfico de acordo com as regras
     if (totalDays <= 14) {

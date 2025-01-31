@@ -20,7 +20,10 @@ const Investimento = db.define('investimento', {
         type: Sequelize.JSON,
         allowNull: false,
     },
-    grafico: {
+    graficoLinha: {
+        type: Sequelize.STRING,
+    },
+    graficoColuna: {
         type: Sequelize.STRING,
     },
 })

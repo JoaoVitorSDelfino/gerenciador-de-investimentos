@@ -4,7 +4,7 @@ import axios from "axios";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
-import getChart from "../chartApi/index";
+import { getLineChart, getColumnChart } from "../chartApi/index";
 
 function AddInvestimento() {
   const [nome, setNome] = useState("");
@@ -12,7 +12,8 @@ function AddInvestimento() {
   const [dados, setDados] = useState({});
   const [selectedDate, setSelectedDate] = useState(null);
   const [valor, setValor] = useState("");
-  const [grafico, setGrafico] = useState("");
+  const [graficoLinha, setGraficoLinha] = useState("");
+  const [graficoColuna, setGraficoColuna] = useState("");
 
   const navigate = useNavigate();
 
@@ -61,19 +62,22 @@ function AddInvestimento() {
     e.preventDefault();
     try {
       // Aguarda o gráfico ser gerado e armazena a URL na variável
-      const imageUrl = await getChart(dados, nome);
+      const lineChartUrl = await getLineChart(dados, nome)
+      const columnChartUrl = await getColumnChart(dados, nome)
   
       // Atualiza o estado do gráfico
-      setGrafico(imageUrl);
+      setGraficoLinha(lineChartUrl)
+      setGraficoColuna(columnChartUrl)
   
-      console.log('Link do gráfico:', imageUrl);
+      console.log('Link do gráfico de linhas:', lineChartUrl);
   
       // Cria o objeto com o link do gráfico diretamente
       const novoInvestimento = {
         nome,
         descricao,
         dados,
-        grafico: imageUrl, // Usa a URL resolvida diretamente
+        graficoLinha: lineChartUrl,
+        graficoColuna: columnChartUrl,
       };
   
       console.log('Novo investimento:', novoInvestimento);
