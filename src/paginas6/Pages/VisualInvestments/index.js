@@ -1,14 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"; // Importando o Link para navegação
 import * as S from './styles'; // Importa tudo como um objeto "S"
 
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
 const DataPage = () => {
+    const { id } = useParams(); // Obtém o ID do investimento da URL
+    const [investment, setInvestment] = useState(null);
+    
+    const fetchInvestmentDetails = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3001/investmentApi/investments/getInvestmentId/${id}`);
+          setInvestment(response.data.investimento.investment);
+        } catch (error) {
+          console.error("Erro ao buscar detalhes do investimento:", error);
+        }
+    };
+    
+    useEffect(() => {
+        fetchInvestmentDetails();
+    }, [id]);
+    
+    if (!investment) {
+        return <div>Carregando detalhes do investimento...</div>
+    }
+
     return (
         <S.Container>
             <S.WhiteBlock>
                 {/* Título */}
                 <S.TitleContainer>
-                    <S.Title>Detalhes do investimento</S.Title>
+                    <S.Title>{investment.nome}</S.Title>
                     <Link to="/home"> {/* Link para a página Home */}
                         <S.Button className='voltar'>VOLTAR</S.Button>
                     </Link>
@@ -16,21 +39,19 @@ const DataPage = () => {
 
                 {/* Descrição */}
                 <S.Description>
-                    Esta é uma descrição breve sobre o investimento carregado.
+                    {investment.descricao}
                 </S.Description>
 
                 {/* Div para a Imagem */}
                 <S.ImageContainer>
-                    <p>Imagem será carregada aqui.</p>
+                    <img src={investment.graficoLinha} alt='graficoLinha' style={{width: "100%"}}/>
+                </S.ImageContainer>
+                <S.ImageContainer>
+                    <img src={investment.graficoColuna} alt='graficoLinha' style={{width: "100%"}}/>
                 </S.ImageContainer>
 
                 {/* Ano */}
-                <S.Year>Ano: 2023</S.Year>
-
-                {/* Div para Conteúdo Futuro */}
-                <S.ContentContainer>
-                    <p>Conteúdo adicional será carregado aqui.</p>
-                </S.ContentContainer>
+                <S.Year></S.Year>
             </S.WhiteBlock>
         </S.Container>
     );

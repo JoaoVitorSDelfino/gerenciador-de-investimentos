@@ -81,7 +81,7 @@ const Home = () => {
                                     </SelectionIcon>
                                     <h3>{investimento.nome}</h3>
                                     <p>{investimento.descricao}</p>
-                                    <div className="image" src={investimento.graficoLinha}></div>
+                                    <img src={investimento.graficoLinha} alt='graficoLinha' style={{width: "100%"}}/>
                                 </Link>
                             </NewInvestmentBlock>
                         ))}

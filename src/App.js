@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 
 import UserMenu from "./components/UserMenu"
 import AddInvestment from "./components/AddInvestment"
-import InvestmentDetails from "./components/InvestmentDetails"
+import InvestmentDetails from "./paginas6/Pages/VisualInvestments/index"
 import AppRoutes from "./paginas6/Rotas/routes"
 
 function App() {
