@@ -41,11 +41,11 @@ module.exports = {
     },
 
     deletar: async (id) => {
-        const Investment = await Investment.findOne({where: {id: id}})
+        const deletedInvestment = await Investment.findOne({where: {id: id}})
 
-        await Investment.destroy({where: { id: id }})
+        await deletedInvestment.destroy({where: { id: id }})
 
-        return {status: true, mensagem: 'Sucesso ao deletar Investimento!', InvestimentoExcluido: Investment}
+        return {status: true, mensagem: 'Sucesso ao deletar Investimento!', InvestimentoExcluido: deletedInvestment}
     },
 
     listar: async () => {

@@ -36,6 +36,27 @@ const Home = () => {
         }
     };
 
+    const handleDeleteInvestments = async () => {
+        if (selectedBlocks.length === 0) return; // Se nenhum investimento estiver selecionado, não faz nada
+    
+        try {
+            await axios.delete("http://localhost:3001/investmentApi/investments/deleteInvestments", {
+                data: { ids: selectedBlocks }, // Envia os IDs selecionados no corpo da requisição
+            });
+    
+            // Remove os investimentos excluídos do estado
+            setInvestimentos((prevInvestimentos) =>
+                prevInvestimentos.filter((investimento) => !selectedBlocks.includes(investimento.id))
+            );
+    
+            // Limpa os blocos selecionados após a exclusão
+            setSelectedBlocks([]);
+    
+        } catch (error) {
+            console.error("Erro ao excluir investimentos:", error);
+        }
+    };
+
     return (
         <Container>
             <WhiteBlock>
@@ -53,7 +74,9 @@ const Home = () => {
                     >
                         COMPARAR
                     </Button>
-                    <Button className="excluir">EXCLUIR</Button>
+                    <Button className="excluir" onClick={handleDeleteInvestments} disabled={selectedBlocks.length === 0}>
+                        EXCLUIR
+                    </Button>
                 </ButtonContainer>
                 <SubTitle>Lista de todos os investimentos</SubTitle>
                 <GraySection>

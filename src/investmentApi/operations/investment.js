@@ -106,4 +106,34 @@ router.delete('/deleteInvestment/:id', async (req, res) => {
   }
 })
 
+// Deletar múltiplos investimentos pelo array de IDs
+router.delete('/deleteInvestments', async (req, res) => {
+    try {
+        const { ids } = req.body; // Array de IDs vindo do frontend
+
+        if (!ids || ids.length === 0) {
+            return res.status(400).json({ status: false, mensagem: 'Nenhum investimento selecionado para exclusão.' });
+        }
+
+        let resultados = [];
+        for (const id of ids) {
+            const investmentoExiste = await Investment.buscarPorId(id);
+
+            if (!investmentoExiste.status) {
+                resultados.push({ id, status: false, mensagem: 'Investimento não encontrado' });
+                continue;
+            }
+
+            const investmentExcluido = await Investment.deletar(id);
+            resultados.push({ id, status: investmentExcluido.status, mensagem: investmentExcluido.status ? 'Excluído com sucesso' : 'Erro ao excluir' });
+        }
+
+        return res.status(200).json({ resultados });
+
+    } catch (error) {
+        console.error('Erro ao deletar investimentos:', error);
+        return res.status(500).json({ error: 'Erro interno ao excluir investimentos.' });
+    }
+});
+
 module.exports = router
