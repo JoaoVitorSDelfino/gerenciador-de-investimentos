@@ -28,8 +28,8 @@ const Investments = () => {
         }, 500); // Delay de 500ms para evitar cliques rápidos
     };
 
-    return (
-        <S.Container>
+    return
+        /* <S.Container>
             <S.WhiteBlock>
                 <S.TitleContainer>
                     <S.Title>Adicionando um novo investimento</S.Title>
@@ -48,7 +48,6 @@ const Investments = () => {
                             <S.InputField type="number" id="valor" placeholder="Digite o valor" />
                             <S.Button className='adicionarValor'>ADICIONAR VALOR</S.Button>
                         </S.ValorContainer>
-                        {/* Botão ADICIONAR INVESTIMENTO */}
                         <S.Button
                             className='adicionarInvestimento'
                             onClick={handleAddInvestment}
@@ -63,7 +62,7 @@ const Investments = () => {
                 </S.ContentContainer>
             </S.WhiteBlock>
         </S.Container>
-    );
+        */
 };
 
 export default Investments;

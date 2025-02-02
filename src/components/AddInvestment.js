@@ -92,7 +92,7 @@ function AddInvestimento() {
   };  
 
   const redirect = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   return (

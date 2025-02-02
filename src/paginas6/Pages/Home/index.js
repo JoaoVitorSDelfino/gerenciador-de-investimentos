@@ -41,7 +41,7 @@ const Home = () => {
             <WhiteBlock>
                 <MainTitle>Escolha uma ação para gerenciar os seus investimentos</MainTitle>
                 <ButtonContainer>
-                    <Link to="/investment">
+                    <Link to="/addInvestment">
                         <Button className='adicionar'>ADICIONAR</Button>
                     </Link>
                     <Button

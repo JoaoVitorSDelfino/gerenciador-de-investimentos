@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom"
 
 import UserMenu from "./components/UserMenu"
 import AddInvestment from "./components/AddInvestment"
@@ -11,7 +11,7 @@ function App() {
     <Router>
       <AppRoutes />
         <Routes>
-          <Route path="/" element={<UserMenu />} />
+          <Route path="/" element={<Navigate to = "/home" />} />
           <Route path="/addInvestment" element={<AddInvestment />} />
           <Route path="/investments/:id" element={<InvestmentDetails />} />
         </Routes>
