@@ -17,8 +17,8 @@ module.exports = {
         }   
     },
 
-    buscarPorNome: async (nome) => {
-        const Usuario = await User.findOne({where: {nome: nome}})
+    buscarPorEmail: async (email) => {
+        const Usuario = await User.findOne({where: {email: email}})
 
         if (Usuario) {
             return {status: true, mensagem: 'Sucesso ao buscar Usuario!', Usuario: Usuario}

@@ -6,9 +6,9 @@ const User = require('../../controller/UserControl')
 const bodyParser = require('body-parser')
 router.use(bodyParser.json())
 
-router.get('/getUser/:nome', async (req, res) => {
+router.get('/getUser/:email', async (req, res) => {
   try {
-      const usuario = await User.buscarPorNome(req.params.nome)
+      const usuario = await User.buscarPorEmail(req.params.email)
 
       // Valida se o usuario foi encontrado
       if (usuario.status) {
