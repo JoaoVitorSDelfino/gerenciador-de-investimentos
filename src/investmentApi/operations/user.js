@@ -47,3 +47,5 @@ router.get('/getUser/:nome', async (req, res) => {
     }
   })
 })
+
+module.exports = router

@@ -11,5 +11,6 @@ router.get('/investmentApi', async (req, res) => {
 })
 
 router.use('/investmentApi/investments', require('./investment'))
+router.use('/investmentApi/users', require('./user'))
 
 module.exports = router
