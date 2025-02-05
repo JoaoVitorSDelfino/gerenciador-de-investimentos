@@ -88,7 +88,7 @@ const handleCompareInvestments = async () => {
     return (
         <Container>
             <WhiteBlock>
-                <MainTitle>Escolha uma ação para gerenciar os seus investimentos</MainTitle>
+                <MainTitle>Gerenciamento de investimentos</MainTitle>
                 <ButtonContainer>
                     <Link to="/addInvestment">
                         <Button className='adicionar'>ADICIONAR</Button>
