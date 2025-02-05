@@ -55,7 +55,35 @@ const Home = () => {
         } catch (error) {
             console.error("Erro ao excluir investimentos:", error);
         }
-    };
+    }
+
+    const [comparisonData, setComparisonData] = useState(null); // Estado para armazenar os dados comparados
+
+const handleCompareInvestments = async () => {
+        if (selectedBlocks.length !== 2) {
+            alert("Selecione exatamente dois investimentos para comparar.");
+            return;
+        }
+
+        try {
+            const [investimento01, investimento02] = await Promise.all([
+                axios.get(`http://localhost:3001/investmentApi/investments/getInvestmentId/${selectedBlocks[0]}`),
+                axios.get(`http://localhost:3001/investmentApi/investments/getInvestmentId/${selectedBlocks[1]}`)
+            ]);
+
+            setComparisonData({
+                investimento01: investimento01.data.investimento.investment,
+                investimento02: investimento02.data.investimento.investment
+            });
+
+            setShowCard(true); // Abre o modal com a comparação
+            setLayout("sideBySide"); // Define o layout para comparação lado a lado
+
+        } catch (error) {
+            console.error("Erro ao buscar investimentos:", error);
+        }
+};
+
 
     return (
         <Container>
@@ -67,13 +95,12 @@ const Home = () => {
                     </Link>
                     <Button
                         className="comparar"
-                        onClick={() => {
-                            setLayout("sideBySide");
-                            setShowCard(true);
-                        }}
+                        onClick={handleCompareInvestments}
+                        disabled={selectedBlocks.length !== 2} // Só ativa quando 2 investimentos são selecionados
                     >
                         COMPARAR
                     </Button>
+
                     <Button className="excluir" onClick={handleDeleteInvestments} disabled={selectedBlocks.length === 0}>
                         EXCLUIR
                     </Button>
@@ -111,15 +138,28 @@ const Home = () => {
                     </div>
                 </GraySection>
             </WhiteBlock>
-            {showCard && (
+            {showCard && comparisonData && (
                 <Card
-                    title="Comparação entre Investimento X e Investimento Y"
+                    title={`Comparação entre ${comparisonData.investimento01.nome} e ${comparisonData.investimento02.nome}`}
                     layout={layout}
                     onClose={() => setShowCard(false)}
                     onCompareSideBySide={() => setLayout("sideBySide")}
                     onCompareSameGraph={() => setLayout("sameGraph")}
                     onDownload={() => console.log("Download")}
-                />
+                    image1={comparisonData.investimento01.graficoLinha} // Passa a imagem 1
+                    image2={comparisonData.investimento02.graficoLinha}
+                >
+                <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+                <div>
+                    <h3>{comparisonData.investimento01.nome}</h3>
+                    <img src={comparisonData.investimento01.graficoLinha} alt="Gráfico 1" style={{ width: "100%" }} />
+                </div>
+                    <div>
+                        <h3>{comparisonData.investimento02.nome}</h3>
+                        <img src={comparisonData.investimento02.graficoLinha} alt="Gráfico 2" style={{ width: "100%" }} />
+                    </div>
+                </div>
+                </Card>
             )}
         </Container>
     );
