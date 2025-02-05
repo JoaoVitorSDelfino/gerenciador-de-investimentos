@@ -23,7 +23,6 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(10px);
   transition: transform 0.3s ease-in-out;
 
   &:hover {
