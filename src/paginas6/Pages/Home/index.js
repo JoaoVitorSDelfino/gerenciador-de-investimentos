@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Container, WhiteBlock, ButtonContainer, Button, MainTitle, SubTitle, GraySection, NewInvestmentBlock, SelectionIcon } from './styles'
+import { getComparisionChart } from '../../../chartApi'
 import { Link } from 'react-router-dom'
 import Card from './Card'
 
@@ -58,6 +59,7 @@ const Home = () => {
     }
 
     const [comparisonData, setComparisonData] = useState(null); // Estado para armazenar os dados comparados
+    const [comparisonImageUrl, setComparisonImageUrl] = useState(null)
 
     const handleCompareInvestments = async () => {
         if (selectedBlocks.length !== 2) {
@@ -75,6 +77,15 @@ const Home = () => {
                 investimento01: investimento01.data.investimento.investment,
                 investimento02: investimento02.data.investimento.investment
             });
+
+            console.log(typeof investimento01.data.investimento.investment.dados)
+
+            const imageUrl = await getComparisionChart(
+                investimento01.data.investimento.investment.dados, investimento01.data.investimento.investment.nome,
+                investimento02.data.investimento.investment.dados, investimento02.data.investimento.investment.nome
+            );
+
+            setComparisonImageUrl(imageUrl);
 
             setShowCard(true); // Abre o modal com a comparação
             setLayout("sideBySide"); // Define o layout para comparação lado a lado
@@ -148,6 +159,7 @@ const Home = () => {
                     onDownload={() => console.log("Download")}
                     image1={comparisonData.investimento01.graficoLinha} // Passa a imagem 1
                     image2={comparisonData.investimento02.graficoLinha}
+                    image3={comparisonImageUrl}
                 >
                     <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
                         <div>

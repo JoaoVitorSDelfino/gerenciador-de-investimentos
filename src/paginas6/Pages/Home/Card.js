@@ -2,7 +2,7 @@ import React from "react";
 import { ModalOverlay, ModalContent, Title, ButtonGroup, Button, ImageContainer, DownloadButton, CloseButton } from "./CardStyle";
 import { AiOutlineClose } from "react-icons/ai";
 
-const Card = ({ title, layout, onClose, onCompareSideBySide, onCompareSameGraph, onDownload, image1, image2 }) => {
+const Card = ({ title, layout, onClose, onCompareSideBySide, onCompareSameGraph, onDownload, image1, image2, image3 }) => {
     return (
         <ModalOverlay onClick={onClose}>
             <ModalContent onClick={(e) => e.stopPropagation()}>
@@ -24,7 +24,7 @@ const Card = ({ title, layout, onClose, onCompareSideBySide, onCompareSameGraph,
                             <img src={image2} alt="Investimento 2" style={{ width: "45%" }} />
                         </>
                     ) : (
-                        <img src={image1} alt="Investimentos sobrepostos" style={{ width: "90%" }} />
+                        <img src={image3} alt="Investimentos sobrepostos" style={{ width: "90%" }} />
                     )}
                 </ImageContainer>
 

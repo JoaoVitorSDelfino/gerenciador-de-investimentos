@@ -1,6 +1,7 @@
 import generateLineGraphConfig from './middleware/generateGraph'
-import generateColumnCraph from './middleware/generateColumnCraph';
-import axios from 'axios'; // Certifique-se de usar a importação correta
+import generateColumnCraph from './middleware/generateColumnCraph'
+import generateComparisonGraphConfig from './middleware/generateComparisionGraph'
+import axios from 'axios'
 
 async function getLineChart(dados, nome) {
     try {
@@ -42,4 +43,24 @@ async function getColumnChart(dados, nome) {
     }
 }
 
-export {getLineChart, getColumnChart};
+async function getComparisionChart(dados1, nome1, dados2, nome2) {
+    try {
+        const lineChartConfig = generateComparisonGraphConfig(dados1, nome1, dados2, nome2);
+
+        const response = await axios.get('https://quickchart.io/chart', {
+            params: {
+                c: JSON.stringify(lineChartConfig), // Configuração do gráfico como string JSON
+            },
+        });
+
+        const imageUrl = response.request.responseURL; // URL da imagem gerada
+        console.log('Link da imagem gerada:', imageUrl);
+
+        return imageUrl;
+    } catch (error) {
+        console.error('Erro ao gerar o gráfico de linhas:', error);
+        throw error;
+    }
+}
+
+export {getLineChart, getColumnChart, getComparisionChart};
