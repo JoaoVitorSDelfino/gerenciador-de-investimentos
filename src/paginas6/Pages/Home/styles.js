@@ -50,24 +50,27 @@ export const SubTitle = styled.h2`
 
 export const GraySection = styled.div`
   width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
+  max-width: 400px;
   border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  max-height: 460px; /* Define um limite de altura */
+  overflow-y: auto; /* Ativa scroll apenas se necessário */
 `;
+
 
 export const SelectionIcon = styled.div`
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   background-color: ${({ isSelected }) => (isSelected ? "#f1c40f" : "#ccc")};
   color: white;
-  font-size: 16px;
+  font-size: 30px;
   font-weight: bold;
   text-align: center;
   line-height: 24px;
@@ -84,11 +87,12 @@ export const NewInvestmentBlock = styled.div`
   position: relative;
   width: 300px;
   height: 400px;
-  background: rgba(255, 255, 255, 0.1);
   padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  color: white;
+  color: gray;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -131,6 +135,7 @@ export const Button = styled.button`
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
   &.adicionar {
     background-color: #007bff;

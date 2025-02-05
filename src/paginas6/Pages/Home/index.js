@@ -11,7 +11,7 @@ const Home = () => {
     const [selectedBlocks, setSelectedBlocks] = useState([]); // Estado para rastrear blocos selecionados
 
     const [investimentos, setInvestimentos] = useState([]);
-    
+
     // Função para buscar os investimentos cadastrados
     const fetchInvestments = async () => {
         try {
@@ -21,11 +21,11 @@ const Home = () => {
             console.error("Erro ao buscar investimentos:", error);
         }
     };
-    
+
     useEffect(() => {
         fetchInvestments();
     }, []);
-    
+
 
     // Função para selecionar/deselecionar um bloco
     const handleSelectBlock = (id) => {
@@ -38,20 +38,20 @@ const Home = () => {
 
     const handleDeleteInvestments = async () => {
         if (selectedBlocks.length === 0) return; // Se nenhum investimento estiver selecionado, não faz nada
-    
+
         try {
             await axios.delete("http://localhost:3001/investmentApi/investments/deleteInvestments", {
                 data: { ids: selectedBlocks }, // Envia os IDs selecionados no corpo da requisição
             });
-    
+
             // Remove os investimentos excluídos do estado
             setInvestimentos((prevInvestimentos) =>
                 prevInvestimentos.filter((investimento) => !selectedBlocks.includes(investimento.id))
             );
-    
+
             // Limpa os blocos selecionados após a exclusão
             setSelectedBlocks([]);
-    
+
         } catch (error) {
             console.error("Erro ao excluir investimentos:", error);
         }
@@ -59,7 +59,7 @@ const Home = () => {
 
     const [comparisonData, setComparisonData] = useState(null); // Estado para armazenar os dados comparados
 
-const handleCompareInvestments = async () => {
+    const handleCompareInvestments = async () => {
         if (selectedBlocks.length !== 2) {
             alert("Selecione exatamente dois investimentos para comparar.");
             return;
@@ -82,7 +82,7 @@ const handleCompareInvestments = async () => {
         } catch (error) {
             console.error("Erro ao buscar investimentos:", error);
         }
-};
+    };
 
 
     return (
@@ -107,31 +107,31 @@ const handleCompareInvestments = async () => {
                 </ButtonContainer>
                 <SubTitle>Lista de todos os investimentos</SubTitle>
                 <GraySection>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
                         {investimentos.map((investimento) => (
                             <NewInvestmentBlock key={investimento.id}>
-                                <Link 
-                                        to={`/investments/${investimento.id}`} 
-                                            style={{ textDecoration: 'none', color: 'inherit', display: 'block', height: '100%' }}
-                                            onClick={(e) => {
-                                                // Impede que o clique no SelectionIcon redirecione
-                                                if (e.target.closest('.selection-icon')) {
-                                                    e.preventDefault();
-                                                }
-                                            }}
-                                        >
-                                        <SelectionIcon className="selection-icon"
-                                            isSelected={selectedBlocks.includes(investimento.id)}
-                                            onClick={(e) => {
+                                <Link
+                                    to={`/investments/${investimento.id}`}
+                                    style={{ textDecoration: 'none', color: 'inherit', display: 'block', height: '100%' }}
+                                    onClick={(e) => {
+                                        // Impede que o clique no SelectionIcon redirecione
+                                        if (e.target.closest('.selection-icon')) {
+                                            e.preventDefault();
+                                        }
+                                    }}
+                                >
+                                    <SelectionIcon className="selection-icon"
+                                        isSelected={selectedBlocks.includes(investimento.id)}
+                                        onClick={(e) => {
                                             e.preventDefault(); // Impede que o Link seja acionado
                                             handleSelectBlock(investimento.id);
-                                            }}
-                                        >
+                                        }}
+                                    >
                                         {selectedBlocks.includes(investimento.id) ? "✔" : "□"}
                                     </SelectionIcon>
                                     <h3>{investimento.nome}</h3>
                                     <p>{investimento.descricao}</p>
-                                    <img src={investimento.graficoLinha} alt='graficoLinha' style={{width: "100%"}}/>
+                                    <img src={investimento.graficoLinha} alt='graficoLinha' style={{ width: "100%" }} />
                                 </Link>
                             </NewInvestmentBlock>
                         ))}
@@ -149,16 +149,16 @@ const handleCompareInvestments = async () => {
                     image1={comparisonData.investimento01.graficoLinha} // Passa a imagem 1
                     image2={comparisonData.investimento02.graficoLinha}
                 >
-                <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
-                <div>
-                    <h3>{comparisonData.investimento01.nome}</h3>
-                    <img src={comparisonData.investimento01.graficoLinha} alt="Gráfico 1" style={{ width: "100%" }} />
-                </div>
-                    <div>
-                        <h3>{comparisonData.investimento02.nome}</h3>
-                        <img src={comparisonData.investimento02.graficoLinha} alt="Gráfico 2" style={{ width: "100%" }} />
+                    <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+                        <div>
+                            <h3>{comparisonData.investimento01.nome}</h3>
+                            <img src={comparisonData.investimento01.graficoLinha} alt="Gráfico 1" style={{ width: "100%" }} />
+                        </div>
+                        <div>
+                            <h3>{comparisonData.investimento02.nome}</h3>
+                            <img src={comparisonData.investimento02.graficoLinha} alt="Gráfico 2" style={{ width: "100%" }} />
+                        </div>
                     </div>
-                </div>
                 </Card>
             )}
         </Container>
