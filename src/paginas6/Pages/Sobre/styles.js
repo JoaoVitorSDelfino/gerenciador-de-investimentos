@@ -2,23 +2,23 @@ import styled from "styled-components";
 
 // Container principal da página
 export const Container = styled.div`
-  background-color: rgb(46, 46, 46);
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  padding: 20px; 
+  padding: 5%; 
 `;
 
 // Estilo base para os blocos (Bloco 1 e Bloco 2)
 const BlocoBase = styled.div`
   width: 60vw;
-  padding: 6%;
+  padding: 4%;
   background: url('/Images/default.jpg') no-repeat center center/cover;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
+  /*  border-radius: 20px;*/
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -42,6 +42,8 @@ const BlocoBase = styled.div`
 export const Bloco1 = styled(BlocoBase)`
   background: url('/Images/1.jpg') no-repeat center center/cover; 
   margin-bottom: 30px;
+  height: 100%;
+  width: 100%;
 `;
 
 // Estilo para o Bloco 2
@@ -65,6 +67,7 @@ export const MainText = styled.h1`
   font-size: 2.5rem; 
   margin: 0; 
   color: white;
+
 
   @media (max-width: 768px) {
     font-size: 2rem;

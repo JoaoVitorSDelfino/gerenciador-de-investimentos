@@ -15,9 +15,10 @@ button{
     font-size: large;
 }
 
+/* não sei exatamente pra que serve essa linha, mas ela acaba com a página sobre de formas absurdas
 div{
     background-color: #fff;
-}
+}*/
 
 h1{
     font-family: Arial, Helvetica, sans-serif;

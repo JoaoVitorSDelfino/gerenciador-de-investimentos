@@ -59,6 +59,7 @@ export const GraySection = styled.div`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   max-height: 460px; /* Define um limite de altura */
   overflow-y: auto; /* Ativa scroll apenas se necessário */
+  background-color: white; /* ao colocar apenas para o específico, os outros não ferram */
 `;
 
 
