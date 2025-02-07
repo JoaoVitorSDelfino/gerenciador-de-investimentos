@@ -8,6 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
   gap: 20px;
   padding: 5%; 
 `;
@@ -22,6 +23,7 @@ const BlocoBase = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border-radius: 10px;
   text-align: left;
   color: white;
   min-height: 400px;
@@ -67,6 +69,7 @@ export const MainText = styled.h1`
   font-size: 2.5rem; 
   margin: 0; 
   color: white;
+  margin-left: 30px;
 
 
   @media (max-width: 768px) {
@@ -80,6 +83,7 @@ export const SubText = styled.p`
   font-size: 1.5rem; 
   margin: 0; 
   color: white;
+  margin-left: 30px;
 
   @media (max-width: 768px) {
     font-size: 1.2rem; 

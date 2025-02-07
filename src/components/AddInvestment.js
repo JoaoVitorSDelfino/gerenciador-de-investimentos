@@ -97,6 +97,7 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: "10px",
     background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
     padding: "20px 0", // Espaço extra para crescimento
   },
