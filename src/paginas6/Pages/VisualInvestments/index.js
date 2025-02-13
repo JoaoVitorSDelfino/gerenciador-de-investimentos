@@ -45,7 +45,7 @@ const DataPage = () => {
                     <img src={investment.graficoLinha} alt='graficoLinha' style={{ width: "100%" }} />
                 </S.ImageContainer>
                 <S.ImageContainer>
-                    <img src={investment.graficoColuna} alt='graficoLinha' style={{ width: "100%" }} />
+                    <img src={investment.graficoColuna} alt='graficoColuna' style={{ width: "100%" }} />
                 </S.ImageContainer>
 
                 {/* Ano */}

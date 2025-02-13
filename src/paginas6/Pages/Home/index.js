@@ -157,8 +157,8 @@ const Home = () => {
                     onCompareSideBySide={() => setLayout("sideBySide")}
                     onCompareSameGraph={() => setLayout("sameGraph")}
                     onDownload={() => console.log("Download")}
-                    image1={comparisonData.investimento01.graficoLinha} // Passa a imagem 1
-                    image2={comparisonData.investimento02.graficoLinha}
+                    image1={comparisonData.investimento01.graficoColuna} // Passa a imagem 1
+                    image2={comparisonData.investimento02.graficoColuna}
                     image3={comparisonImageUrl}
                 >
                     <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
